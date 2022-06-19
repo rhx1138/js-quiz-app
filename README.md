@@ -1,1 +1,2 @@
-# js-quiz-app
+# js-quiz-app #
+## A simple quiz app ##
