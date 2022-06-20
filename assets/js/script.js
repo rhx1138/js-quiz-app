@@ -1,2 +1,0 @@
-// startGame function
-// selectAnswer function
