@@ -1,3 +1,11 @@
+#timer {
+  float: right;
+  margin-right: 40px;
+  color: black;
+  font-size: x-large;
+  font-weight: 550;
+}
+
 .choice-container {
     display: flex;
     margin-bottom: 0.5rem;
@@ -24,16 +32,10 @@
     width: 100%;
   }
   
-  .correct {
-    visibility: visible;
-  }
-  
-  .incorrect {
-    visibility: visible;
-  }
 
   #rightWrong {
     color: black;
+    font-size: 22px;
   }
   
   /* HUD */

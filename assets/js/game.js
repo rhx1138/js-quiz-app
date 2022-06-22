@@ -7,6 +7,7 @@ const optionsEl = document.getElementById('options');
 const choices = Array.from(document.getElementsByClassName('choice-text'));
 const rightWrongEl = document.getElementById('rightWrong');
 
+
 // let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -33,17 +34,30 @@ let questions = [{
     },
 ];
 
-//CONSTANTS
 // set interval
 const INCORRECT_DEDUCTION = 10;
 const MAX_QUESTIONS = 5;
 
+// time display
+let timeLeft = 30;
+let timerInterval;
+
 startGame = () => {
-    // questionCounter = 0;
+    
     score = 0;
-    // availableQuesions = [...questions];
     getNewQuestion();
 };
+
+let timer = document.getElementById('timer');
+timerInterval = setInterval(function() {
+    timeLeft -=1;
+
+    timer.innerHTML = "Time: " + timeLeft;
+    if (timeLeft == 0)
+    clearInterval(timerInterval);
+},1000)
+
+
 
 getNewQuestion = () => {
 
@@ -62,23 +76,23 @@ getNewQuestion = () => {
         })
 
     });
-
+    
+    // document.getElementById('rightWrong').hidden = true;
     acceptingAnswers = true;
 };
 
+// need to clear rightWrongEl before next page is shown
 selectAnswer = (answer) => {
     // console.log(answer);
     if (answer === questions[questionIndex].answer) {
-        // questions[0].answer;
         console.log('correct');
-        rightWrongEl.textContent = 'correct';
+        rightWrongEl.textContent = 'correct answer';
     } else {
         console.log('not correct');
-        rightWrongEl.textContent = 'not correct';
-
+        rightWrongEl.textContent = 'wrong answer';
     }
-
     questionIndex++;
+
 
     // check if we have run out of questions
 
@@ -87,9 +101,28 @@ selectAnswer = (answer) => {
         window.location.href = 'end.html';
     } else {
         getNewQuestion();
+        
     }
+
+    // if(answer === questions[questionIndex].answer) {
+    //     timer = timer + 10;
+    //     timeLeft.innerHTML = timer;
+    // }
+
+    // if(answer !== questions[questionIndex].answer) {
+    //     timer = timer - 10;
+    //     timeLeft.innerHTML = timer;
+    // }
+
+// set timeout pause
+    // setTimeout( () => {
+    //     selectAnswer.remove(answer);
+    //     getNewQuestion();
+    // }, 1000);
 
 
 }
+
+
 
 getNewQuestion();
