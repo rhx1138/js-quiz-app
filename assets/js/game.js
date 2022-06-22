@@ -1,5 +1,6 @@
-// add timer 
-// timer === score
+// add timer finished to show correct and wrong answers
+// pause between questions 
+// timer === score + show final score
 // need best scores local storage
 
 const questionEl = document.getElementById('question');
@@ -18,24 +19,29 @@ let questionIndex = 0;
 // make the answer the same text as choices / make choices an array 
 
 let questions = [{
-        question: 'Question number one',
-        options: ['choice1', 'choice2', 'choice3', 'choice4'],
-        answer: 'choice1',
+        question: 'Javascript is an _______ language?',
+        options: ['Object-Oriented', 'Object-Based', 'Procedural', 'None of the above'],
+        answer: 'Object-Oriented',
     },
     {
-        question: 'Question number two',
-        options: ['choice1', 'choice2', 'choice3', 'choice4'],
-        answer: 'choice2',
+        question: 'Which of the following keywords is used to define a variable in Javascript?',
+        options: ['var', 'let', 'Both are correct', 'None of the above'],
+        answer: 'Both are correct',
     },
     {
-        question: 'Question number three',
-        options: ['choice1', 'choice2', 'choice3', 'choice4'],
-        answer: 'choice3',
+        question: 'Which of the following methods is used to access HTML elements using Javascript?',
+        options: ['getElementbyID()', 'getElementByClassName()', 'Both are correct', 'None of the above'],
+        answer: 'Both are correct',
+    },
+    {
+        question: 'Which of the following methods can be used to display data in some form using Javascript?',
+        options: ['document.write()', 'console.lot()', 'window.alert', 'All of the above'],
+        answer: 'All of the above',
     },
 ];
 
 // set interval
-const INCORRECT_DEDUCTION = 10;
+// const INCORRECT_DEDUCTION = 10;
 const MAX_QUESTIONS = 5;
 
 // time display
@@ -48,6 +54,8 @@ startGame = () => {
     getNewQuestion();
 };
 
+// timer function to display time left 
+
 let timer = document.getElementById('timer');
 timerInterval = setInterval(function() {
     timeLeft -=1;
@@ -56,6 +64,7 @@ timerInterval = setInterval(function() {
     if (timeLeft == 0)
     clearInterval(timerInterval);
 },1000)
+
 
 
 
@@ -73,6 +82,9 @@ getNewQuestion = () => {
         optionsEl.appendChild(optionNode);
         optionNode.addEventListener('click', (e) => {
             selectAnswer(choice);
+            setTimeout(getNewQuestion, 3000); 
+
+
         })
 
     });
@@ -93,36 +105,40 @@ selectAnswer = (answer) => {
     }
     questionIndex++;
 
-
+    
+    // after the question is answered this will generate the next question after a 1 second pause.
+ if (questionIndex < questions.length) {
+    setTimeout(getNewQuestion, 1000);
+    } else {
+        window.location.href = 'end.html';
+    } 
+    
     // check if we have run out of questions
 
-    if (questionIndex === questions.length) {
+    if (questionIndex === questions.length || timerInterval === 0) {
         console.log('you finished all of the questions');
         window.location.href = 'end.html';
     } else {
         getNewQuestion();
         
     }
+    
+    if(answer !== questions[questionIndex].answer) {
+        timeLeft -= 5;
 
-    // if(answer === questions[questionIndex].answer) {
-    //     timer = timer + 10;
-    //     timeLeft.innerHTML = timer;
-    // }
+    } 
 
-    // if(answer !== questions[questionIndex].answer) {
-    //     timer = timer - 10;
-    //     timeLeft.innerHTML = timer;
-    // }
+    if(answer === questions[questionIndex].answer) {
+        score += 10;
+    }
+    
+    // if answer is correct, add 5 seconds to timer 
+    // if answer is wrong, subtract 5 seconds from timer
+    // if time is 0, end game
 
-// set timeout pause
-    // setTimeout( () => {
-    //     selectAnswer.remove(answer);
-    //     getNewQuestion();
-    // }, 1000);
-
-
-}
-
+  
+   }
 
 
 getNewQuestion();
+

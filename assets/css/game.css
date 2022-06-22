@@ -13,6 +13,7 @@
     font-size: 1.8rem;
     background-color: rgb(88, 46, 148);
     border-radius: 12px;
+    padding-left: 20px;
   }
   
   .choice-container:hover {
@@ -34,7 +35,7 @@
   
 
   #rightWrong {
-    color: black;
+    color: darkgray;
     font-size: 22px;
   }
   
