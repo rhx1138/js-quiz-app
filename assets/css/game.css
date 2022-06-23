@@ -35,12 +35,15 @@
   
 
   #rightWrong {
-    color: darkgray;
+    color: rgb(124, 124, 124);
     font-size: 22px;
   }
   
   /* HUD */
-  
+
+.hide {
+  display: none;
+}
   #hud {
     display: flex;
     justify-content: space-between;

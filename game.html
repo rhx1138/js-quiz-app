@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Quizer App</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/game.css">
-  </head>
-  <body>
-    <div id="timer">Time: 30</div>
-    <div class="container">
-      <div id="game" class="justify-center flex-column">
-        <h2 id="question"></h2>
-        <div class="options" id="options"></div>
-        
-<div class="rightWrong" id="rightWrong">
 
-</div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Quizer App</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/game.css">
+</head>
+
+<body>
+  <div id="timer">Time: 30</div>
+  <div class="container"> 
+    <!-- used to be 'game' -->
+    <div id="startGame" class="justify-center flex-column">
+      <h2 id="question"></h2>
+      <div class="options" id="options"></div>
+
+      <div class="rightWrong" id="rightWrong">
 
       </div>
+
     </div>
-    <script src="/assets/js/game.js"></script>
-  </body>
+    <div class="container hide" id="endGame">
+      <div id="end" class="flex-center flex-column">
+        <!-- shows final score  -->
+        <h1 id="finalScore"></h1>
+        <form>
+          <input type="text" name="username" id="username" placeholder="username" />
+          <button class="btn" id="saveScoreBtn">
+            Save
+          </button>
+        </form>
+        <a class="btn" href="/game.html">Play Again</a>
+        <a class="btn" href="/">Go Home</a>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script src="/assets/js/game.js"></script>
+</body>
+
 </html>

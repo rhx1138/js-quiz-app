@@ -7,19 +7,22 @@ const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const choices = Array.from(document.getElementsByClassName('choice-text'));
 const rightWrongEl = document.getElementById('rightWrong');
+const endGameEl = document.getElementById('endGame');
+const startGameEl = document.getElementById('startGame');
+const timerEl = document.getElementById('timer');
+const saveScoreBtn = document.getElementById('saveScoreBtn');
+const usernameEl = document.getElementById('username');
 
-
-// let currentQuestion = {};
-let acceptingAnswers = false;
 let score = 0;
 let questionIndex = 0;
+
 // let availableQuesions = [];
 
 // hard coded for testing, users can still see data, will add questions.js at a later time
 // make the answer the same text as choices / make choices an array 
 
 let questions = [{
-        question: 'Javascript is an _______ language?',
+        question: 'Javascript is a/an _______ language?',
         options: ['Object-Oriented', 'Object-Based', 'Procedural', 'None of the above'],
         answer: 'Object-Oriented',
     },
@@ -48,24 +51,20 @@ const MAX_QUESTIONS = 5;
 let timeLeft = 30;
 let timerInterval;
 
-startGame = () => {
-    
-    score = 0;
-    getNewQuestion();
-};
 
 // timer function to display time left 
+let timeOff = () => {
+    timeLeft -= 1;
 
-let timer = document.getElementById('timer');
-timerInterval = setInterval(function() {
-    timeLeft -=1;
+    timerEl.innerHTML = "Time: " + timeLeft;
+    if (timeLeft <= 0) {
+        endGame();
+    }
 
-    timer.innerHTML = "Time: " + timeLeft;
-    if (timeLeft == 0)
-    clearInterval(timerInterval);
-},1000)
+    // we need this to go to visible 
+}
 
-
+timerInterval = setInterval(timeOff, 1000);
 
 
 getNewQuestion = () => {
@@ -82,15 +81,13 @@ getNewQuestion = () => {
         optionsEl.appendChild(optionNode);
         optionNode.addEventListener('click', (e) => {
             selectAnswer(choice);
-            setTimeout(getNewQuestion, 3000); 
+            // setTimeout(getNewQuestion, 3000);
 
 
         })
 
     });
-    
-    // document.getElementById('rightWrong').hidden = true;
-    acceptingAnswers = true;
+
 };
 
 // need to clear rightWrongEl before next page is shown
@@ -99,46 +96,56 @@ selectAnswer = (answer) => {
     if (answer === questions[questionIndex].answer) {
         console.log('correct');
         rightWrongEl.textContent = 'correct answer';
+        // if the answer is correct add 10 seconds to the timer
+        timeLeft += 10;
     } else {
         console.log('not correct');
         rightWrongEl.textContent = 'wrong answer';
+        // if answer is wrong deduct 5 seconds from the timer
+        timeLeft -= 5;
     }
+
+    // check if we have run out of questions
     questionIndex++;
 
-    
-    // after the question is answered this will generate the next question after a 1 second pause.
- if (questionIndex < questions.length) {
-    setTimeout(getNewQuestion, 1000);
-    } else {
-        window.location.href = 'end.html';
-    } 
-    
-    // check if we have run out of questions
-
-    if (questionIndex === questions.length || timerInterval === 0) {
+    if (questionIndex === questions.length) {
         console.log('you finished all of the questions');
-        window.location.href = 'end.html';
+        endGame();
+        // window.location.href = 'end.html';
     } else {
         getNewQuestion();
-        
+
     }
-    
-    if(answer !== questions[questionIndex].answer) {
-        timeLeft -= 5;
 
-    } 
+}
 
-    if(answer === questions[questionIndex].answer) {
-        score += 10;
-    }
-    
-    // if answer is correct, add 5 seconds to timer 
-    // if answer is wrong, subtract 5 seconds from timer
-    // if time is 0, end game
-
-  
-   }
+const endGame = () => {
+    clearInterval(timerInterval);
+    // window.location.href = 'end.html';
+    endGameEl.setAttribute('class', 'container');
+    startGameEl.setAttribute('class', 'hide');
+    timerEl.textContent = 'Your score: ' + timeLeft;
+}
 
 
+// saveScoreBtn.addEventListener('click', (e) => {
+//    saveScore();
+
+// })
+
+
+const saveScore = () => {
+    console.log('save score');
+    let username = usernameEl.value;
+    console.log(username);
+    let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    let newScore = {
+        name: username, 
+        score: timeLeft
+    };
+    highScores.push(newScore);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    window.location.href = 'highscores.html';
+} 
+saveScoreBtn.onclick = saveScore;
 getNewQuestion();
-
