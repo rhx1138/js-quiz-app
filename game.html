@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div id="timer">Time: 30</div>
+  <div id="timer">Time: 30</div> 
   <div class="container"> 
     <!-- used to be 'game' -->
     <div id="startGame" class="justify-center flex-column">
@@ -26,13 +26,12 @@
     <div class="container hide" id="endGame">
       <div id="end" class="flex-center flex-column">
         <!-- shows final score  -->
+        <div><a class="score" href="/highscores.html">View High Scores</a></div>
         <h1 id="finalScore"></h1>
-        <form>
           <input type="text" name="username" id="username" placeholder="username" />
           <button class="btn" id="saveScoreBtn">
             Save
           </button>
-        </form>
         <a class="btn" href="/game.html">Play Again</a>
         <a class="btn" href="/">Go Home</a>
       </div>

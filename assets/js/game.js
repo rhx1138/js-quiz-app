@@ -80,14 +80,13 @@ getNewQuestion = () => {
         optionNode.textContent = choice;
         optionsEl.appendChild(optionNode);
         optionNode.addEventListener('click', (e) => {
+            // delay the answer selection so the user can see the correct answer 
+            // still not working correctly 
+
             selectAnswer(choice);
-            // setTimeout(getNewQuestion, 3000);
-
-
+          
         })
-
     });
-
 };
 
 // need to clear rightWrongEl before next page is shown
@@ -119,19 +118,18 @@ selectAnswer = (answer) => {
 
 }
 
+
 const endGame = () => {
     clearInterval(timerInterval);
     // window.location.href = 'end.html';
     endGameEl.setAttribute('class', 'container');
     startGameEl.setAttribute('class', 'hide');
     timerEl.textContent = 'Your score: ' + timeLeft;
+    saveScoreBtn.addEventListener('click', function () {
+        saveScore();
+    });  
+    
 }
-
-
-// saveScoreBtn.addEventListener('click', (e) => {
-//    saveScore();
-
-// })
 
 
 const saveScore = () => {
@@ -146,6 +144,9 @@ const saveScore = () => {
     highScores.push(newScore);
     localStorage.setItem('highScores', JSON.stringify(highScores));
     window.location.href = 'highscores.html';
+   
+    
 } 
-saveScoreBtn.onclick = saveScore;
+
+
 getNewQuestion();
