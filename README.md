@@ -10,5 +10,6 @@ The quiz app is built to help beginning coders learn the fundamentals.
 
 [Quiz App Website](https://js-quizer.netlify.app/)
 
-![screenshot one](/assets/images/screen1.jpg "Splash page") 
-![screenshot two](/assets/images/screen2.jpg "Quiz time")
+![screenshot one](/assets/images/quiz-home.png "Home page") 
+![screenshot two](/assets/images/quiz-question.png "Quiz question")
+![screenshot two](/assets/images/quiz-score.png "Quiz question")
