@@ -14,7 +14,7 @@ const saveScoreBtn = document.getElementById('saveScoreBtn');
 const usernameEl = document.getElementById('username');
 
 let score = 0;
-let questionIndex = 0;
+let questionIndex = 0; 
 
 // let availableQuesions = [];
 
@@ -33,8 +33,8 @@ let questions = [{
     },
     {
         question: 'Which of the following methods is used to access HTML elements using Javascript?',
-        options: ['getElementbyID()', 'getElementByClassName()', 'Both are correct', 'None of the above'],
-        answer: 'Both are correct',
+        options: ['getElementbyId()', 'getElementByClassName()', 'Both are correct', 'None of the above'],
+        answer: 'getElementById()',
     },
     {
         question: 'Which of the following methods can be used to display data in some form using Javascript?',
@@ -72,7 +72,7 @@ getNewQuestion = () => {
     questionEl.innerText = currentQuestion.question;
 
     optionsEl.textContent = ''; // clear all of the choices 
-
+    rightWrongEl.textContent = '';
     currentQuestion.options.forEach((choice) => {
         let optionNode = document.createElement('button')
         optionNode.setAttribute('class', 'choice-container');
@@ -111,7 +111,8 @@ selectAnswer = (answer) => {
         endGame();
         // window.location.href = 'end.html';
     } else {
-        getNewQuestion();
+        setTimeout(getNewQuestion, 1000);
+        // getNewQuestion();
 
     }
 
