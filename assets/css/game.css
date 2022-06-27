@@ -1,7 +1,8 @@
 #timer {
   float: right;
   margin-right: 40px;
-  color: black;
+  /* color: black; */
+  color: #d1cfcc;
   font-size: x-large;
   font-weight: 550;
 }
@@ -38,6 +39,40 @@
   #rightWrong {
     color: rgb(124, 124, 124);
     font-size: 22px;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .container-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  #container-score {
+    font-size: x-large;
+  }
+
+  #btn-score {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    margin-top: 20px;
+    width: 20rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    border-radius: 12px;
+    color: #ffffff;
+    background-color: rgb(88, 46, 148);
+  }
+
+  #btn-score:hover {
+    cursor: pointer;
+    background-color: rgb(141, 73, 236);
   }
   
   /* HUD */

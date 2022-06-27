@@ -7,10 +7,12 @@ const getScore = () => {
     let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
     containerScoresEl.textContent = '';
     
+    // arranges scores from highest to lowest
     highScores.sort(function(a, b) {
         return (b.score) - (a.score);
     });
 
+    // iterates through scores to then appends them
     for(let i = 0; i < highScores.length; i++) {
         (highScores[i].score);
 
@@ -21,6 +23,7 @@ const getScore = () => {
     }
 }
 
+// clears scores from local storage
 const clearScore = () => {
 localStorage.removeItem('highScores');
 location.reload();
