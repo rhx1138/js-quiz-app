@@ -61,7 +61,6 @@ let timeOff = () => {
         endGame();
     }
 
-    // we need this to go to visible 
 }
 
 timerInterval = setInterval(timeOff, 1000);
@@ -118,7 +117,7 @@ selectAnswer = (answer) => {
 
 }
 
-
+// shows end game screen 
 const endGame = () => {
     clearInterval(timerInterval);
     // window.location.href = 'end.html';
@@ -131,7 +130,7 @@ const endGame = () => {
     
 }
 
-
+// allows user to save score to the local storage
 const saveScore = () => {
     console.log('save score');
     let username = usernameEl.value;
