@@ -11,7 +11,7 @@ const endGameEl = document.getElementById('endGame');
 const startGameEl = document.getElementById('startGame');
 const timerEl = document.getElementById('timer');
 const saveScoreBtn = document.getElementById('saveScoreBtn');
-const usernameEl = document.getElementById('username');
+const usernameEl = document.getElementById('username'); 
 
 let score = 0;
 let questionIndex = 0; 
@@ -63,7 +63,7 @@ let timeOff = () => {
 
 }
 
-timerInterval = setInterval(timeOff, 1000);
+timerInterval = setInterval(timeOff, 1000); 
 
 
 getNewQuestion = () => {
@@ -72,7 +72,7 @@ getNewQuestion = () => {
     questionEl.innerText = currentQuestion.question;
 
     optionsEl.textContent = ''; // clear all of the choices 
-    rightWrongEl.textContent = '';
+    rightWrongEl.textContent = ''; 
     currentQuestion.options.forEach((choice) => {
         let optionNode = document.createElement('button')
         optionNode.setAttribute('class', 'choice-container');
